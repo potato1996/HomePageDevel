@@ -11,7 +11,7 @@ ppa for NVIDIA drivers, just use the system provided installer.
 
 **Solve Annoying sudo env**
 
-Add following into `~/.bashrc`: alias sudo=`sudo env PATH=$PATH`
+Add following into `~/.bashrc`: `alias sudo='sudo env PATH=$PATH'`
 
 ## 1. Install NVIDIA Driver
 
@@ -37,6 +37,16 @@ Test if we success:
 ## 2. Install CUDA
 
 Download CUDA Toolkit form [NVIDIA Website](https://developer.nvidia.com/cuda-zone)
+
+### Install From Deb(recommended)
+
+Will get something like `{a-long-name}.deb`
+
+`sudo dpkg -i {a-long-name}.deb`
+
+`sudo apt-get install cuda-{version}`
+
+### Install From Run
 
 Will get something like `{a-long-name}.run`
 
@@ -65,6 +75,15 @@ Compile a CUDA sample program and run it-.-
 
 1. Download cuDNN tar package from [NVIDIA Website](https://developer.nvidia.com/cudnn)
 
+### Install From Deb(Recommended)
+
+2. Install the deb packages
+
+`dpkg -i {balabala}`
+
+### Install Compiled Lib
+
+
 2. Unzip the package
 
     ```
@@ -79,7 +98,6 @@ Compile a CUDA sample program and run it-.-
     sudo chmod a+r /usr/local/cuda/include/cudnn.h
     /usr/local/cuda/lib64/libcudnn*
     ```
-    
 
 ## 4. Install TensorRT
 
