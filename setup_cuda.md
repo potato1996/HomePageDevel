@@ -79,7 +79,7 @@ Compile a CUDA sample program and run it-.-
 
 2. Install the deb packages
 
-`dpkg -i {balabala}`
+`dpkg -i libcudnn*`
 
 ### Install Compiled Lib
 
