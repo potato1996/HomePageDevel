@@ -19,10 +19,9 @@ Add following into `~/.bashrc`: `alias sudo='sudo env PATH=$PATH'`
 
 Add the offical graphics drivers PPA
 
-    ```
     sudo add-apt-repository ppa:graphics-drivers
     sudo apt-get update
-    ```
+
 
 Just use Ubuntu built-in 3rd party driver installer:
 
@@ -44,10 +43,8 @@ Download CUDA Toolkit form [NVIDIA Website](https://developer.nvidia.com/cuda-zo
 
 Will get something like `{a-long-name}.deb`, then install it:
 
-    ```
     sudo dpkg -i {a-long-name}.deb
     sudo apt-get install cuda-{version}
-    ```
 
 ### Install From Run
 
