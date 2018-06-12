@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<title>Setup CUDA Env</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    body, h1, h2, h3, h4, h5, h6 {
+        font-family: "Raleway", sans-serif
+    }
+</style>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main" style="margin-left:100px">
+    
+        <div class="w3-container w3-padding-large" style="margin-bottom:32px">
+
+<h1 id="settingupcudaenvironmentonubuntu">Setting Up CUDA Environment on Ubuntu</h1>
+
+<p>Well it was a long time since last time I set up CUDA Environment on a x86 Linux System.(It was CUDA6, bumblebee, blacklist nouveau etc..)</p>
+
+<p>Now things get surprisingly simpler on Ubuntu!</p>
+
+<p>Note that this tutorial only tested on Ubuntu16.04 on June 2018. As you know, things are changing fast :)</p>
+
+<h2 id="0importanttipsforgetabouttheoldtraps">0. Important Tips: Forget about the old traps!</h2>
+
+<p>Forget about the bumblebee and traps on switching nouveau. Now Ubuntu has offical
+ppa for NVIDIA drivers, just use the system provided installer.</p>
+
+<p><strong>Solve Annoying sudo env</strong></p>
+
+<p>Add following into <code>~/.bashrc</code>: <code>alias sudo='sudo env PATH=$PATH'</code></p>
+
+<h2 id="1installnvidiadriver">1. Install NVIDIA Driver</h2>
+
+<p>Add the offical graphics drivers PPA</p>
+
+<pre><code>sudo add-apt-repository ppa:graphics-drivers
+sudo apt-get update
+</code></pre>
+
+<p>Just use Ubuntu built-in 3rd party driver installer:</p>
+
+<p>System Settings - Software Update - Additional Drivers - selece the version we need</p>
+
+<p>or</p>
+
+<p><code>sudo apt-get install nvidia-{version-num}</code></p>
+
+<p>Test if we success:</p>
+
+<p><code>nvidia-smi</code></p>
+
+<h2 id="2installcuda">2. Install CUDA</h2>
+
+<p>Download CUDA Toolkit form <a href="https://developer.nvidia.com/cuda-zone">NVIDIA Website</a></p>
+
+<h3 id="installfromdebrecommended">Install From Deb(recommended)</h3>
+
+<p>Will get something like <code>{a-long-name}.deb</code>, then install it:</p>
+
+<pre><code>sudo dpkg -i {a-long-name}.deb
+sudo apt-get install cuda-{version}
+</code></pre>
+
+<h3 id="installfromrun">Install From Run</h3>
+
+<p>Will get something like <code>{a-long-name}.run</code></p>
+
+<p>Then <code>sudo sh {a-long-name}.run --override</code></p>
+
+<p><strong>Important Notes</strong></p>
+
+<ol>
+<li><p>Answer "no" for installing driver</p></li>
+
+<li><p>Answer "yes" for creating softlink</p></li>
+
+<li><p>Set environment variable, add follwing in <code>~/.bashrc</code></p>
+
+<pre><code>export PATH=/usr/local/cuda/bin:$PATH
+export LD_LIBRARY_PATH=/user/local/cuda/lib64:$LD_LIBRARY_PATH
+</code></pre></li>
+
+<li><p>activate changing to env: <code>source ~/.bashrc</code> or just open a new terminal..</p></li>
+</ol>
+
+<p>Test if we success</p>
+
+<p>Compile a CUDA sample program and run it-.-</p>
+
+<h2 id="3installcudnn">3. Install cuDNN</h2>
+
+<ol>
+<li>Download cuDNN tar package from <a href="https://developer.nvidia.com/cudnn">NVIDIA Website</a></li>
+</ol>
+
+<h3 id="installfromdebrecommended-1">Install From Deb(Recommended)</h3>
+
+<ol>
+<li><p>Install the deb packages</p>
+
+<pre><code>dpkg -i libcudnn*
+</code></pre></li>
+</ol>
+
+<h3 id="installcompiledlib">Install Compiled Lib</h3>
+
+<ol>
+<li><p>Unzip the package</p>
+
+<pre><code>tar -xzvf cudnn-{version}.tgz
+</code></pre></li>
+
+<li><p>copy into cuda install directory</p>
+
+<pre><code>sudo cp cuda/include/cudnn.h /usr/local/cuda/include
+sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
+sudo chmod a+r /usr/local/cuda/include/cudnn.h
+/usr/local/cuda/lib64/libcudnn*
+</code></pre>
+
+<p>Note that differ from apt, download the compile lib mannually will not affect ld lib cache, etc. Be care to deal with the path problems by yourself :P </p></li>
+</ol>
+
+<h2 id="4installtensorrt">4. Install TensorRT</h2>
+
+<ol>
+<li><p>Download TensorRT tar package from <a href="https://developer.nvidia.com/tensorrt">NVIDIA Website</a></p></li>
+
+<li><p>Follow the offical installation guide</p></li>
+</ol>
+
+<p>PS: It's not because I'm lazy here. Unlike CUDA, TensorRT is changing fast and the way to install is tend to be inconsistent in the future. I will wait for a more stable installation way and update it here (like, apt-get or release page with deb packages)</p>
+
+<h2 id="5setuppathsinyourbashrc">5. Setup paths in your bashrc</h2>
+
+<ol>
+<li><p>Open your bashrc</p>
+
+<pre><code>vim ~/.bashrc
+</code></pre></li>
+
+<li><p>Add following at the end of the file</p>
+
+<pre><code># HOME Executable Path
+export PATH=$HOME/bin:$PATH
+
+# CUDA Executable Path
+export PATH=/usr/local/cuda/bin:$PATH
+
+# CUDA Library Path
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+
+# CUPTI Library Path
+export LD_LIBRARY_PATH=/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
+
+# TensorRT Library Path
+export LD_LIBRARY_PATH=/usr/local/TensorRT/lib:$LD_LIBRARY_PATH
+
+# Anaconda3 Executable Path
+export PATH="/home/potato/anaconda3/bin:$PATH"
+</code></pre></li>
+
+<li><p>Save the file, and activate it: <code>source ~/.bashrc</code></p></li>
+</ol>
+		</div>
+
+        <div class="w3-black w3-center w3-padding-24">Powered by Dayou Du(2018)</div>
+
+        <!-- End page content -->
+    </div>
+
+</body>
+</html>
+
