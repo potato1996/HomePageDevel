@@ -84,9 +84,10 @@
             <p>Will get something like
                 <code>{a-long-name}.deb</code>, then install it:</p>
 
-            <pre><code>sudo dpkg -i {a-long-name}.deb
-sudo apt-get install cuda-{version}
-</code></pre>
+            <pre><code>
+                sudo dpkg -i {a-long-name}.deb
+                sudo apt-get install cuda-{version}
+            </code></pre>
 
             <h3 id="installfromrun">Install From Run</h3>
 
@@ -116,9 +117,10 @@ sudo apt-get install cuda-{version}
                         <code>~/.bashrc</code>
                     </p>
 
-                    <pre><code>export PATH=/usr/local/cuda/bin:$PATH
-export LD_LIBRARY_PATH=/user/local/cuda/lib64:$LD_LIBRARY_PATH
-</code></pre>
+                    <pre><code>
+                        export PATH=/usr/local/cuda/bin:$PATH
+                        export LD_LIBRARY_PATH=/user/local/cuda/lib64:$LD_LIBRARY_PATH
+                    </code></pre>
                 </li>
 
                 <li>
@@ -163,11 +165,12 @@ export LD_LIBRARY_PATH=/user/local/cuda/lib64:$LD_LIBRARY_PATH
                 <li>
                     <p>copy into cuda install directory</p>
 
-                    <pre><code>sudo cp cuda/include/cudnn.h /usr/local/cuda/include
-sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
-sudo chmod a+r /usr/local/cuda/include/cudnn.h
-/usr/local/cuda/lib64/libcudnn*
-</code></pre>
+                    <pre><code>
+                        sudo cp cuda/include/cudnn.h /usr/local/cuda/include
+                        sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
+                        sudo chmod a+r /usr/local/cuda/include/cudnn.h
+                        /usr/local/cuda/lib64/libcudnn*
+                    </code></pre>
 
                     <p>Note that differ from apt, download the compile lib mannually will not affect ld lib cache, etc. Be care
                         to deal with the path problems by yourself :P </p>
@@ -198,31 +201,31 @@ sudo chmod a+r /usr/local/cuda/include/cudnn.h
                 <li>
                     <p>Open your bashrc</p>
 
-                    <pre><code>vim ~/.bashrc
-</code></pre>
+                    <pre><code>vim ~/.bashrc</code></pre>
                 </li>
 
                 <li>
                     <p>Add following at the end of the file</p>
 
-                    <pre><code># HOME Executable Path
-export PATH=$HOME/bin:$PATH
+                    <pre><code>
+                        # HOME Executable Path
+                        export PATH=$HOME/bin:$PATH
 
-# CUDA Executable Path
-export PATH=/usr/local/cuda/bin:$PATH
+                        # CUDA Executable Path
+                        export PATH=/usr/local/cuda/bin:$PATH
 
-# CUDA Library Path
-export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+                        # CUDA Library Path
+                        export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
-# CUPTI Library Path
-export LD_LIBRARY_PATH=/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
+                        # CUPTI Library Path
+                        export LD_LIBRARY_PATH=/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
 
-# TensorRT Library Path
-export LD_LIBRARY_PATH=/usr/local/TensorRT/lib:$LD_LIBRARY_PATH
+                        # TensorRT Library Path
+                        export LD_LIBRARY_PATH=/usr/local/TensorRT/lib:$LD_LIBRARY_PATH
 
-# Anaconda3 Executable Path
-export PATH="/home/potato/anaconda3/bin:$PATH"
-</code></pre>
+                        # Anaconda3 Executable Path
+                        export PATH="/home/potato/anaconda3/bin:$PATH"
+                    </code></pre>
                 </li>
 
                 <li>

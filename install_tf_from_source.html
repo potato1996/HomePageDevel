@@ -45,14 +45,14 @@
                     <p>In terminal, type:</p>
 
                     <pre><code>sh {a-long-name-for-the-installer}.sh
-</code></pre>
+                    </code></pre>
                 </li>
 
                 <li>
                     <p>(Optional) If we need to switch python version (e.g 3.5):</p>
 
                     <pre><code>conda install python=3.5
-</code></pre>
+                    </code></pre>
 
                     <p>Note that the recommanded way to select python version is to create a env. The instructions can be found
                         <a href="https://conda.io/docs/user-guide/tasks/manage-python.html">Here</a>
@@ -98,16 +98,17 @@
                 <li>
                     <p>Clone TF repo</p>
 
-                    <pre><code>git clone https://github.com/tensorflow/tensorflow
-cd tensorflow 
-</code></pre>
+                    <pre><code>
+                        git clone https://github.com/tensorflow/tensorflow
+                        cd tensorflow 
+                    </code></pre>
                 </li>
 
                 <li>
                     <p>Switch to your desired TF version (e.g, 1.8)</p>
 
                     <pre><code>git checkout r1.8
-</code></pre>
+                    </code></pre>
 
                     <p>
                         <strong>Be wise to choose your TF version, it should be compatible with your CUDA/cudnn/TensorRT versions</strong>
@@ -118,14 +119,14 @@ cd tensorflow
                     <p>Install the python packages if they have not been installed by conda</p>
 
                     <pre><code>pip install six numpy wheel
-</code></pre>
+                    </code></pre>
                 </li>
 
                 <li>
                     <p>Select configurations</p>
 
                     <pre><code>./configure
-</code></pre>
+                    </code></pre>
 
                     <p>There are loooots of y/n questions, just make sure you enabled CUDA</p>
 
@@ -138,7 +139,7 @@ cd tensorflow
                     <p>Compile TF</p>
 
                     <pre><code>bazel build --config=opt --config=cuda --cxxopt="-D_GLIBCXX_USE_CXX11_ABI=0" //tensorflow/tools/pip_package:build_pip_package
-</code></pre>
+                    </code></pre>
 
                     <p>This will take a long time. Take a coffe and just wait it complete.</p>
                 </li>
@@ -147,24 +148,25 @@ cd tensorflow
                     <p>Build pip package</p>
 
                     <pre><code>bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
-</code></pre>
+                    </code></pre>
                 </li>
 
                 <li>
                     <p>Install pip package</p>
 
                     <pre><code>sudo pip install /tmp/tensorflow_pkg/tensorflow-{xxxx}.whl
-</code></pre>
+                    </code></pre>
                 </li>
 
                 <li>
                     <p>Test if we succeed, lets open python and take a try.</p>
 
-                    <pre><code>import tensorflow as tf
-hello = tf.constant('Hello, TensorFlow!')
-sess = tf.Session()
-print(sess.run(hello))
-</code></pre>
+                    <pre><code>
+                        import tensorflow as tf
+                        hello = tf.constant('Hello, TensorFlow!')
+                        sess = tf.Session()
+                        print(sess.run(hello))
+                    </code></pre>
                 </li>
             </ol>
         </div>
