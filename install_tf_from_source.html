@@ -7,120 +7,167 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-    body, h1, h2, h3, h4, h5, h6 {
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         font-family: "Raleway", sans-serif
     }
 </style>
+
 <body class="w3-light-grey w3-content" style="max-width:1600px">
 
     <!-- !PAGE CONTENT! -->
     <div class="w3-main" style="margin-left:100px">
-    
+
         <div class="w3-container w3-padding-large" style="margin-bottom:32px">
-<h1 id="installtensorflowfromsource">Install TensorFlow From Source</h1>
+            <h1 id="installtensorflowfromsource">Install TensorFlow From Source</h1>
 
-<p>Well, since I need to mannualy hack a cuda function into TF, then I need to compile it from source.</p>
+            <p>Well, since I need to mannualy hack a cuda function into TF, then I need to compile it from source.</p>
 
-<p>Note that this tutorial only tested on Ubuntu16.04 on June 2018. As you know, things are changing fast :)</p>
+            <p>Note that this tutorial only tested on Ubuntu16.04 on June 2018. As you know, things are changing fast :)</p>
 
-<h2 id="installpython">Install Python</h2>
+            <h2 id="installpython">Install Python</h2>
 
-<p>Personally I believe anaconda is the best way to do this:</p>
+            <p>Personally I believe anaconda is the best way to do this:</p>
 
-<ol>
-<li><p>Download Anaconda Installer <a href="https://www.anaconda.com/download/">Here</a></p></li>
+            <ol>
+                <li>
+                    <p>Download Anaconda Installer
+                        <a href="https://www.anaconda.com/download/">Here</a>
+                    </p>
+                </li>
 
-<li><p>In terminal, type:</p>
+                <li>
+                    <p>In terminal, type:</p>
 
-<pre><code>sh {a-long-name-for-the-installer}.sh
-</code></pre></li>
+                    <pre><code>sh {a-long-name-for-the-installer}.sh
+</code></pre>
+                </li>
 
-<li><p>(Optional) If we need to switch python version (e.g 3.5):</p>
+                <li>
+                    <p>(Optional) If we need to switch python version (e.g 3.5):</p>
 
-<pre><code>conda install python=3.5
+                    <pre><code>conda install python=3.5
 </code></pre>
 
-<p>Note that the recommanded way to select python version is to create a env. The instructions can be found <a href="https://conda.io/docs/user-guide/tasks/manage-python.html">Here</a></p></li>
+                    <p>Note that the recommanded way to select python version is to create a env. The instructions can be found
+                        <a href="https://conda.io/docs/user-guide/tasks/manage-python.html">Here</a>
+                    </p>
+                </li>
 
-<li><p>Anaconda should contains most python packages needed for TF.</p></li>
-</ol>
+                <li>
+                    <p>Anaconda should contains most python packages needed for TF.</p>
+                </li>
+            </ol>
 
-<h2 id="installbazel">Install Bazel</h2>
+            <h2 id="installbazel">Install Bazel</h2>
 
-<p>Bazel is required to compile TF from source code</p>
+            <p>Bazel is required to compile TF from source code</p>
 
-<ol>
-<li><p>Download Bazel binary installer <a href="https://github.com/bazelbuild/bazel/releases">Here</a></p></li>
+            <ol>
+                <li>
+                    <p>Download Bazel binary installer
+                        <a href="https://github.com/bazelbuild/bazel/releases">Here</a>
+                    </p>
+                </li>
 
-<li><p>Install dependencied for installer</p>
+                <li>
+                    <p>Install dependencied for installer</p>
 
-<pre><code>sudo apt-get install pkg-config zip g++ zlib1g-dev unzip
-</code></pre></li>
+                    <pre><code>sudo apt-get install pkg-config zip g++ zlib1g-dev unzip
+</code></pre>
+                </li>
 
-<li><p>Run the installer</p>
+                <li>
+                    <p>Run the installer</p>
 
-<pre><code>sh bazel-&lt;version&gt;-installer-linux-x86_64.sh --user
-</code></pre></li>
-</ol>
+                    <pre><code>sh bazel-&lt;version&gt;-installer-linux-x86_64.sh --user
+</code></pre>
+                </li>
+            </ol>
 
-<h2 id="compileandinstalltf">Compile and Install TF</h2>
+            <h2 id="compileandinstalltf">Compile and Install TF</h2>
 
-<p>Note that we skipped the cuda/cudnn/tensorRT parts. You can find the instructions in another blog</p>
+            <p>Note that we skipped the cuda/cudnn/tensorRT parts. You can find the instructions in another blog</p>
 
-<ol>
-<li><p>Clone TF repo</p>
+            <ol>
+                <li>
+                    <p>Clone TF repo</p>
 
-<pre><code>git clone https://github.com/tensorflow/tensorflow
+                    <pre><code>git clone https://github.com/tensorflow/tensorflow
 cd tensorflow 
-</code></pre></li>
+</code></pre>
+                </li>
 
-<li><p>Switch to your desired TF version (e.g, 1.8)</p>
+                <li>
+                    <p>Switch to your desired TF version (e.g, 1.8)</p>
 
-<pre><code>git checkout r1.8
+                    <pre><code>git checkout r1.8
 </code></pre>
 
-<p><strong>Be wise to choose your TF version, it should be compatible with your CUDA/cudnn/TensorRT versions</strong></p></li>
+                    <p>
+                        <strong>Be wise to choose your TF version, it should be compatible with your CUDA/cudnn/TensorRT versions</strong>
+                    </p>
+                </li>
 
-<li><p>Install the python packages if they have not been installed by conda</p>
+                <li>
+                    <p>Install the python packages if they have not been installed by conda</p>
 
-<pre><code>pip install six numpy wheel
-</code></pre></li>
+                    <pre><code>pip install six numpy wheel
+</code></pre>
+                </li>
 
-<li><p>Select configurations</p>
+                <li>
+                    <p>Select configurations</p>
 
-<pre><code>./configure
+                    <pre><code>./configure
 </code></pre>
 
-<p>There are loooots of y/n questions, just make sure you enabled CUDA</p>
+                    <p>There are loooots of y/n questions, just make sure you enabled CUDA</p>
 
-<p><strong>Don't care about the cudnn library path if you installed it from deb package</strong></p></li>
+                    <p>
+                        <strong>Don't care about the cudnn library path if you installed it from deb package</strong>
+                    </p>
+                </li>
 
-<li><p>Compile TF</p>
+                <li>
+                    <p>Compile TF</p>
 
-<pre><code>bazel build --config=opt --config=cuda --cxxopt="-D_GLIBCXX_USE_CXX11_ABI=0" //tensorflow/tools/pip_package:build_pip_package
+                    <pre><code>bazel build --config=opt --config=cuda --cxxopt="-D_GLIBCXX_USE_CXX11_ABI=0" //tensorflow/tools/pip_package:build_pip_package
 </code></pre>
 
-<p>This will take a long time. Take a coffe and just wait it complete.</p></li>
+                    <p>This will take a long time. Take a coffe and just wait it complete.</p>
+                </li>
 
-<li><p>Build pip package</p>
+                <li>
+                    <p>Build pip package</p>
 
-<pre><code>bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
-</code></pre></li>
+                    <pre><code>bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
+</code></pre>
+                </li>
 
-<li><p>Install pip package</p>
+                <li>
+                    <p>Install pip package</p>
 
-<pre><code>sudo pip install /tmp/tensorflow_pkg/tensorflow-{xxxx}.whl
-</code></pre></li>
+                    <pre><code>sudo pip install /tmp/tensorflow_pkg/tensorflow-{xxxx}.whl
+</code></pre>
+                </li>
 
-<li><p>Test if we succeed, lets open python and take a try.</p>
+                <li>
+                    <p>Test if we succeed, lets open python and take a try.</p>
 
-<pre><code>import tensorflow as tf
+                    <pre><code>import tensorflow as tf
 hello = tf.constant('Hello, TensorFlow!')
 sess = tf.Session()
 print(sess.run(hello))
-</code></pre></li>
-</ol>
-		</div>
+</code></pre>
+                </li>
+            </ol>
+        </div>
 
         <div class="w3-black w3-center w3-padding-24">Powered by Dayou Du(2018)</div>
 
@@ -128,5 +175,5 @@ print(sess.run(hello))
     </div>
 
 </body>
-</html>
 
+</html>
